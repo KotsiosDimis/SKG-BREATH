@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Thessaloniki Air Quality</h1>
+      <h1>Eimai o alex kai eime pellos thelo na piasi protathlima i omonoia!</h1>
       {airData ? (
         <pre>{JSON.stringify(airData, null, 2)}</pre>
       ) : (
