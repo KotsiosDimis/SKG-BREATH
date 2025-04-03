@@ -4,7 +4,7 @@ function App() {
   const [airData, setAirData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/open-weather') // Proxy forwards to backend
+    fetch('https://skg-breath.onrender.com/api/open-weather') // Proxy forwards to backend
       .then((res) => res.json())
       .then((data) => setAirData(data))
       .catch((err) => console.error('Error fetching air quality:', err));
