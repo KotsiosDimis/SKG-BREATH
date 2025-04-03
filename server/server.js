@@ -1,10 +1,20 @@
-const app = require('./app');
-const dotenv = require('dotenv');
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 
-dotenv.config();
+const app = express();
+const port = 3001;
 
-const PORT = process.env.PORT || 3001;
+app.use(cors());
 
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+// Routes
+const openWeatherRoute = require('./routes/openWeather');
+app.use('/api/open-weather', openWeatherRoute);
+
+app.get('/', (req, res) => {
+  res.send('Welcome to SKG-BREATH backend!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
