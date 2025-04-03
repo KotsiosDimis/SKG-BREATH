@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SKG-BREATH/static/css/main.e6c13ad2.css",
+    "main.js": "/SKG-BREATH/static/js/main.121ed448.js",
+    "static/js/453.419a5d54.chunk.js": "/SKG-BREATH/static/js/453.419a5d54.chunk.js",
+    "index.html": "/SKG-BREATH/index.html",
+    "main.e6c13ad2.css.map": "/SKG-BREATH/static/css/main.e6c13ad2.css.map",
+    "main.121ed448.js.map": "/SKG-BREATH/static/js/main.121ed448.js.map",
+    "453.419a5d54.chunk.js.map": "/SKG-BREATH/static/js/453.419a5d54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.121ed448.js"
+  ]
+}
