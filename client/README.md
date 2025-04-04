@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# 🌬️ SkgBreath
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **SkgBreath**, a React-based web application that helps inform the citizens of Thessaloniki about their local air quality through **maps**, **graphs**, and real-time **data visualizations**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📦 Frontend Tech Stack
 
-### `npm start`
+This project uses the following tools and technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ⚛️ **React 19** – UI library for building component-based interfaces
+- 🎨 **Tailwind CSS 3.3** – Utility-first CSS framework for rapid styling
+- 🌍 **React Router DOM v7** – Routing library for SPAs
+- 💾 **gh-pages** – Deployment to GitHub Pages
+- 🧪 **Testing Library** – Unit testing utilities for React components
+- 🎯 **Lucide React** – Icon library used for modern, lightweight UI icons
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧠 File Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+SkgBreath/
+├── public/                # Static files
+│   ├── favicon.ico
+│   ├── index.html         # HTML entry point
+│   └── ...
+├── src/                   # Source code
+│   ├── App.jsx            # Main app component with routing
+│   ├── index.js           # ReactDOM entry point
+│   ├── index.css          # Tailwind & global styles
+│   ├── assets/            # Logos, images, etc.
+│   ├── components/        # Reusable UI components (e.g. Navbar)
+│   ├── pages/             # Route views (Home, About, Data, etc.)
+│   ├── services/          # API call logic (e.g. fetch air quality)
+│   └── styles/            # Optional custom CSS
+├── tailwind.config.js     # Tailwind configuration
+├── postcss.config.js      # PostCSS plugins (Tailwind + Autoprefixer)
+├── package.json           # Project metadata, scripts, dependencies
+└── README.md              # This file 📝
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📥 Clone the repo
+```bash
+git clone https://github.com/KotsiosDimis/SKG-BREATH.git
+cd SKG-BREATH
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📦 Install dependencies
+```bash
+npm install
+```
 
-### `npm run eject`
+### 🔧 Start the development server
+```bash
+npm start
+```
+This will run the app at `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🌐 Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This project is deployed to **GitHub Pages**:
+📍 [https://KotsiosDimis.github.io/SKG-BREATH](https://KotsiosDimis.github.io/SKG-BREATH)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To redeploy:
+```bash
+npm run deploy
+```
+This will build the app and push it to the `gh-pages` branch.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📚 Pages Overview
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Route         | Component    | Description                             |
+|---------------|--------------|-----------------------------------------|
+| `/`           | `Home.jsx`    | Welcome message, intro to SkgBreath     |
+| `/about`      | `About.jsx`   | Info about the app and its purpose      |
+| `/data`       | `Data.jsx`    | Air quality API results in live format  |
 
-### Code Splitting
+Routing is handled via:
+```jsx
+<BrowserRouter basename="/SKG-BREATH">
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/data" element={<Data />} />
+  </Routes>
+</BrowserRouter>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Pull requests are welcome! If you'd like to add a feature or fix a bug, feel free to fork the project and submit a PR.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📄 License
 
-### Advanced Configuration
+This project is open source. License to be defined.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Made with 💙 in Thessaloniki 🇬🇷
