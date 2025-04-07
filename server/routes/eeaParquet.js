@@ -58,7 +58,8 @@ router.post('/files', async (req, res) => {
   // 4. POST /read-parquet
   const parquet = require('parquetjs-lite');
   const { Readable } = require('stream');
-  const fetch = require('node-fetch');
+  const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
 
   router.post('/read-parquet', async (req, res) => {
     const { url } = req.body;
