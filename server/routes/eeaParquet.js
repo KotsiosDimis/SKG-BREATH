@@ -43,14 +43,18 @@ router.post('/files', async (req, res) => {
       });
       res.json(response.data);
     } catch (err) {
-      console.error('EEA API /files error:', {
-        message: err.message,
-        status: err.response?.status,
-        data: err.response?.data
-      });
+      console.error('EEA API /files error:');
+      if (err.response) {
+        console.error('Status:', err.response.status);
+        console.error('Data:', JSON.stringify(err.response.data, null, 2));
+      } else {
+        console.error('Message:', err.message);
+      }
+  
       res.status(500).json({ error: 'Failed to get file URLs' });
     }
   });
+  
   
 
 module.exports = router;
