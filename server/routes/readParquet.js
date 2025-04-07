@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const parquet = require('parquetjs-lite');
+const parquet = require('@dsnp/parquetjs');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
