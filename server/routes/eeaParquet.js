@@ -57,42 +57,40 @@ router.post('/files', async (req, res) => {
 
   // 4. POST /read-parquet
   const parquet = require('parquetjs-lite');
-const { Readable } = require('stream');
-const fetch = require('node-fetch');
+  const { Readable } = require('stream');
+  const fetch = require('node-fetch');
 
-router.post('/read-parquet', async (req, res) => {
-  const { url } = req.body;
+  router.post('/read-parquet', async (req, res) => {
+    const { url } = req.body;
 
-  if (!url) {
-    return res.status(400).json({ error: 'Missing URL in request body.' });
-  }
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Failed to fetch file: ${response.statusText}`);
-
-    const buffer = await response.buffer();
-
-    // 🧠 LOG buffer length just in case
-    console.log(`Downloaded buffer size: ${buffer.length}`);
-
-    const reader = await parquet.ParquetReader.openBuffer(buffer);
-    const cursor = reader.getCursor();
-    let record;
-    const records = [];
-
-    while ((record = await cursor.next())) {
-      records.push(record);
+    if (!url) {
+        return res.status(400).json({ error: 'Missing URL in request body.' });
     }
 
-    await reader.close();
-    res.json(records);
-  } catch (err) {
-    console.error('[read-parquet] Error:', err);
-    res.status(500).json({ error: 'Failed to read parquet file.' });
-  }
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to fetch file: ${response.statusText}`);
+
+        const buffer = await response.buffer();
+
+        // 🧠 LOG buffer length just in case
+        console.log(`Downloaded buffer size: ${buffer.length}`);
+
+        const reader = await parquet.ParquetReader.openBuffer(buffer);
+        const cursor = reader.getCursor();
+        let record;
+        const records = [];
+
+        while ((record = await cursor.next())) {
+            records.push(record);
+        }
+
+        await reader.close();
+        res.json(records);
+    } catch (err) {
+        console.error('[read-parquet] Error:', err);
+        res.status(500).json({ error: 'Failed to read parquet file.' });
+    }
 });
-  
-  
 
 module.exports = router;
