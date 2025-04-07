@@ -18,29 +18,39 @@ router.get('/countries', async (req, res) => {
 
 // 2. POST /City
 router.post('/cities', async (req, res) => {
-  try {
-    const { countries } = req.body;
-    const response = await axios.post(`${BASE_URL}/City`, countries, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-    res.json(response.data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to fetch cities' });
-  }
-});
+    try {
+      const countries = req.body;
+      if (!Array.isArray(countries)) {
+        return res.status(400).json({ error: 'Request body must be an array of country codes.' });
+      }
+  
+      const response = await axios.post(`${BASE_URL}/City`, countries, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      res.json(response.data);
+    } catch (err) {
+      console.error('City fetch error:', err.response?.data || err.message);
+      res.status(500).json({ error: 'Failed to fetch cities' });
+    }
+  });
 
 // 3. POST /ParquetFile/urls
 router.post('/files', async (req, res) => {
-  try {
-    const response = await axios.post(`${BASE_URL}/ParquetFile/urls`, req.body, {
-      headers: { 'Content-Type': 'application/json' }
-    });
-    res.json(response.data); // array of URLs
-  } catch (err) {
-    console.error('EEA API Error:', err.response?.data || err.message);
-    res.status(500).json({ error: 'Failed to get file URLs' });
-  }
-});
+    try {
+      const response = await axios.post(`${BASE_URL}/ParquetFile/urls`, req.body, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      res.json(response.data);
+    } catch (err) {
+      console.error('EEA API /files error:', {
+        message: err.message,
+        status: err.response?.status,
+        data: err.response?.data
+      });
+      res.status(500).json({ error: 'Failed to get file URLs' });
+    }
+  });
+  
 
 module.exports = router;
