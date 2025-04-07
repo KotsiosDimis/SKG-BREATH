@@ -11,8 +11,11 @@ app.use(cors());
 // Routes
 const openWeatherRoute = require('./routes/openWeather');
 const eeaParquet = require('./routes/eeaParquet');
+const readParquetRoute = require('./routes/readParquet');
+
 app.use('/api/open-weather', openWeatherRoute);
 app.use('/api/eea', eeaParquet);
+app.use('/api/read', readParquetRoute);
 
 app.get('/', (req, res) => {
   res.send('Welcome to SKG-BREATH backend!');
