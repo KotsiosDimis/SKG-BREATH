@@ -56,35 +56,42 @@ router.post('/files', async (req, res) => {
   });
 
   // 4. POST /read-parquet
-  router.post('/read-parquet', async (req, res) => {
-    const { url } = req.body;
-  
-    if (!url) {
-      return res.status(400).json({ error: 'Missing URL in request body.' });
+  const parquet = require('parquetjs-lite');
+const { Readable } = require('stream');
+const fetch = require('node-fetch');
+
+router.post('/read-parquet', async (req, res) => {
+  const { url } = req.body;
+
+  if (!url) {
+    return res.status(400).json({ error: 'Missing URL in request body.' });
+  }
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch file: ${response.statusText}`);
+
+    const buffer = await response.buffer();
+
+    // 🧠 LOG buffer length just in case
+    console.log(`Downloaded buffer size: ${buffer.length}`);
+
+    const reader = await parquet.ParquetReader.openBuffer(buffer);
+    const cursor = reader.getCursor();
+    let record;
+    const records = [];
+
+    while ((record = await cursor.next())) {
+      records.push(record);
     }
-  
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to fetch file: ${response.statusText}`);
-  
-      const buffer = await response.buffer();
-      const stream = Readable.from(buffer);
-      const reader = await parquet.ParquetReader.openBuffer(buffer);
-      const cursor = reader.getCursor();
-      let record;
-      const records = [];
-  
-      while ((record = await cursor.next())) {
-        records.push(record);
-      }
-  
-      await reader.close();
-      res.json(records);
-    } catch (err) {
-      console.error('Read parquet error:', err.message);
-      res.status(500).json({ error: 'Failed to read parquet file.' });
-    }
-  });
+
+    await reader.close();
+    res.json(records);
+  } catch (err) {
+    console.error('[read-parquet] Error:', err);
+    res.status(500).json({ error: 'Failed to read parquet file.' });
+  }
+});
   
   
 
