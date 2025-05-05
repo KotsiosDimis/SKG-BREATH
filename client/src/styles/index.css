@@ -1,0 +1,18 @@
+/* Make root-level containers stretch full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure main fills Layout space */
+main {
+  flex: 1;
+  height: 100%;
+}
+
+/* Optional: remove padding for full-viewport pages */
+body {
+  display: flex;
+  flex-direction: column;
+}
