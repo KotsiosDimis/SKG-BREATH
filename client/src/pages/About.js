@@ -1,22 +1,20 @@
-// src/pages/About.js
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout';
 import PollutantCard from '../components/PollutantCard';
-import pollutants from '../data/pollutants';
+import pollutants from '../data/pollutants'; // άλλαξέ το path αν χρειάζεται
 
 const About = () => {
   return (
     <Layout>
-      <Container className="mt-4">
-        <Row>
+      <div className="container mt-4">
+        <div className="row">
           {pollutants.map((pollutant) => (
-            <Col xs={12} md={6} className="mb-4" key={pollutant.id}>
+            <div key={pollutant.id} className="col-md-4 mb-4">
               <PollutantCard {...pollutant} />
-            </Col>
+            </div>
           ))}
-        </Row>
-      </Container>
+        </div>
+      </div>
     </Layout>
   );
 };

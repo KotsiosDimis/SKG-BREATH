@@ -1,8 +1,6 @@
-import React from 'react';
-
 const PollutantCard = ({ title, unit, source, safeLevel, qualityLevels, sourceLink }) => {
   return (
-    <div className="card" style={{ width: '22rem', margin: '20px auto' }}>
+    <div className="card h-100 d-flex flex-column">
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">
@@ -13,7 +11,7 @@ const PollutantCard = ({ title, unit, source, safeLevel, qualityLevels, sourceLi
         </p>
       </div>
 
-      <ul className="list-group list-group-flush">
+      <ul className="list-group list-group-flush mt-auto">
         {qualityLevels.map((level, index) => (
           <li className="list-group-item" key={index}>
             <strong>{level.label}:</strong> {level.range}
@@ -30,3 +28,5 @@ const PollutantCard = ({ title, unit, source, safeLevel, qualityLevels, sourceLi
 };
 
 export default PollutantCard;
+
+
