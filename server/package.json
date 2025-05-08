@@ -18,7 +18,8 @@
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "parquetjs-lite": "^0.8.7"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
