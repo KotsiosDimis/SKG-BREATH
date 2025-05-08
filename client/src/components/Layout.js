@@ -5,9 +5,9 @@ import Footer from './Footer';
 
 const Layout = ({ children }) => {
   return (
-    <div className="d-flex flex-column min-vh-100" style={{ height: '100%' }}>
+    <div className="d-flex flex-column min-vh-100">
       <AppNavbar />
-      <main className="flex-fill" style={{ height: '100%' }}>
+      <main className="flex-grow-1">
         {children}
       </main>
       <Footer />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout';
 import PollutantCard from '../components/PollutantCard';
 
@@ -37,16 +38,16 @@ const About = () => {
 
   return (
     <Layout>
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-md-6 mb-4">
+      <Container className="mt-4">
+        <Row>
+          <Col xs={12} md={6} className="mb-4">
             <PollutantCard {...coData} />
-          </div>
-          <div className="col-md-6 mb-4">
+          </Col>
+          <Col xs={12} md={6} className="mb-4">
             <PollutantCard {...noData} />
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   );
 };
