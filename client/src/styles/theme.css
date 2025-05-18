@@ -1,31 +1,61 @@
-/* ========== COLOR VARIABLES ========== */
+/* ==================================================
+   COLOR VARIABLES - LIGHT THEME (default)
+================================================== */
 :root {
+  /* Brand colors */
   --color-primary: #007bff;
   --color-secondary: #6c757d;
   --color-accent: #00c9a7;
+
+  /* UI background colors */
   --color-light: #f8f9fa;
   --color-dark: #343a40;
+  --color-background: var(--color-light);
+  --color-surface: #ffffff;
 
+  /* Text colors */
   --text-main: #222;
   --text-soft: #555;
 
+  /* Typography */
   --font-main: 'Quicksand', sans-serif;
-
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 4.5rem;
 }
 
-/* ========== GLOBAL RESET ========== */
+/* ==================================================
+   COLOR VARIABLES - DARK THEME
+================================================== */
+.theme-dark {
+  --color-primary: #222;
+  --color-secondary: #444;
+  --color-accent: #00f7ff;
+
+  --color-light: #f8f9fa;
+  --color-dark: #f0f0f0;
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+
+  --text-main: #f0f0f0;
+  --text-soft: #ccc;
+}
+
+/* ==================================================
+   BASE / GLOBAL STYLES
+================================================== */
 body {
   font-family: var(--font-main);
   color: var(--text-main);
-  background-color: var(--color-light);
+  background-color: var(--color-background);
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ========== TYPOGRAPHY ========== */
+/* ==================================================
+   TYPOGRAPHY
+================================================== */
 h1 {
   font-size: var(--font-size-xl);
   font-weight: 400;
@@ -53,7 +83,13 @@ p {
   font-weight: 300;
   color: var(--text-soft);
   line-height: 1.6;
+} 
+
+/* Add this to LAYOUT section if needed */
+.pt-5 {
+  padding-top: 5rem !important;
 }
+
 
 .lead {
   font-size: var(--font-size-lg);
@@ -62,18 +98,25 @@ p {
   margin-top: 1rem;
 }
 
-/* ========== LAYOUT HELPERS ========== */
+/* ==================================================
+   SECTION & LAYOUT
+================================================== */
 .fullscreen-section {
   height: 100vh;
   padding: 2rem;
-  background-color: var(--color-light); /* default bg */
+  background-color: var(--color-background);
 }
 
-.text-center {
-  text-align: center;
+.section-surface {
+  background-color: var(--color-surface);
+  color: var(--text-main);
+  padding: 2rem;
+  border-radius: 12px;
 }
 
-/* ========== COLOR UTILITY CLASSES ========== */
+/* ==================================================
+   TEXT & BACKGROUND COLOR UTILITIES
+================================================== */
 .text-primary {
   color: var(--color-primary) !important;
 }
@@ -109,7 +152,9 @@ p {
   color: var(--color-light) !important;
 }
 
-/* ========== NAVBAR ========== */
+/* ==================================================
+   NAVBAR
+================================================== */
 .navbar-custom {
   background-color: var(--color-primary) !important;
   font-family: var(--font-main);
@@ -120,12 +165,19 @@ p {
   color: var(--color-light);
   font-weight: 500;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 .navbar-custom .nav-link:hover,
 .navbar-custom .navbar-brand:hover {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.navbar-custom .nav-link.active {
+  color: var(--color-accent) !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .navbar-logo-text {
@@ -138,14 +190,9 @@ p {
   pointer-events: none;
 }
 
-/* Active nav link */
-.navbar-custom .nav-link.active {
-  color: var(--color-accent) !important;
-  font-weight: 600;
-  border-bottom: 2px solid var(--color-accent);
-}
-
-/* ========== FOOTER ========== */
+/* ==================================================
+   FOOTER
+================================================== */
 .footer-custom {
   background-color: var(--color-primary);
   color: var(--color-light);
@@ -158,7 +205,20 @@ p {
   color: var(--color-light);
 }
 
-/* ========== SPACING UTILITIES ========== */
+/* ==================================================
+   MARGINS & SPACING
+================================================== */
 .mt-5 {
   margin-top: 3rem !important;
 }
+
+.bg-surface {
+  background-color: var(--color-surface);
+  color: var(--text-main);
+}
+
+.bg-background {
+  background-color: var(--color-background);
+  color: var(--text-main);
+}
+
