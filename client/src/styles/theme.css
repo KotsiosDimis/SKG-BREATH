@@ -1,0 +1,164 @@
+/* ========== COLOR VARIABLES ========== */
+:root {
+  --color-primary: #007bff;
+  --color-secondary: #6c757d;
+  --color-accent: #00c9a7;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+
+  --text-main: #222;
+  --text-soft: #555;
+
+  --font-main: 'Quicksand', sans-serif;
+
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 4.5rem;
+}
+
+/* ========== GLOBAL RESET ========== */
+body {
+  font-family: var(--font-main);
+  color: var(--text-main);
+  background-color: var(--color-light);
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 1.5rem 0 1rem;
+  color: var(--text-main);
+}
+
+p {
+  font-size: var(--font-size-base);
+  font-weight: 300;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.lead {
+  font-size: var(--font-size-lg);
+  font-weight: 300;
+  color: var(--text-soft);
+  margin-top: 1rem;
+}
+
+/* ========== LAYOUT HELPERS ========== */
+.fullscreen-section {
+  height: 100vh;
+  padding: 2rem;
+  background-color: var(--color-light); /* default bg */
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ========== COLOR UTILITY CLASSES ========== */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.text-soft {
+  color: var(--text-soft) !important;
+}
+
+.bg-light {
+  background-color: var(--color-light) !important;
+}
+
+.bg-dark {
+  background-color: var(--color-dark) !important;
+  color: var(--color-light) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-light) !important;
+}
+
+.bg-accent {
+  background-color: var(--color-accent) !important;
+  color: var(--color-light) !important;
+}
+
+/* ========== NAVBAR ========== */
+.navbar-custom {
+  background-color: var(--color-primary) !important;
+  font-family: var(--font-main);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: var(--color-light);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .navbar-brand:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.navbar-logo-text {
+  font-family: var(--font-main);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-light);
+  letter-spacing: 1px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Active nav link */
+.navbar-custom .nav-link.active {
+  color: var(--color-accent) !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* ========== FOOTER ========== */
+.footer-custom {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  font-family: var(--font-main);
+  font-size: 0.875rem;
+}
+
+.footer-custom p {
+  margin: 0;
+  color: var(--color-light);
+}
+
+/* ========== SPACING UTILITIES ========== */
+.mt-5 {
+  margin-top: 3rem !important;
+}
