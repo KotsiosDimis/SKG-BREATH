@@ -14,8 +14,18 @@ const Home = () => {
           </div>
         </section>
 
+        {/* About Section */}
+        <section id="about" className="fullscreen-section bg-primary text-light d-flex flex-column justify-content-center align-items-center text-center">
+          <div className="container">
+            <h2>Σχετικά με την εφαρμογή</h2>
+            <p>
+              Το <strong>SKG BREATH</strong> είναι μια σύγχρονη εφαρμογή παρακολούθησης ποιότητας αέρα που στοχεύει στην ενημέρωση των πολιτών της Θεσσαλονίκης και άλλων περιοχών. Παρέχει live δεδομένα και χάρτες με ευαισθησία στο design και την ακριβή πληροφόρηση.
+            </p>
+          </div>
+        </section>
+
         {/* Air Quality Section */}
-        <section id="air-quality" className="fullscreen-section bg-surface d-flex align-items-center">
+        <section id="air-quality" className="fullscreen-section bg-accent d-flex align-items-center">
           <div className="container">
             <div className="row">
               <div className="col-md-6">
@@ -30,15 +40,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="fullscreen-section bg-accent text-light d-flex flex-column justify-content-center align-items-center text-center">
-          <div className="container">
-            <h2>Σχετικά με την εφαρμογή</h2>
-            <p>
-              Το <strong>SKG BREATH</strong> είναι μια σύγχρονη εφαρμογή παρακολούθησης ποιότητας αέρα που στοχεύει στην ενημέρωση των πολιτών της Θεσσαλονίκης και άλλων περιοχών. Παρέχει live δεδομένα και χάρτες με ευαισθησία στο design και την ακριβή πληροφόρηση.
-            </p>
-          </div>
-        </section>
       </main>
     </Layout>
   );

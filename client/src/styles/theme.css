@@ -222,3 +222,12 @@ p {
   color: var(--text-main);
 }
 
+.mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+
