@@ -58,7 +58,7 @@ const Map1 = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/map')
+    fetch('https://skg-breath.onrender.com/api/map')
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error('Failed to fetch /api/map', err));
