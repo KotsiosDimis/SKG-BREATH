@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Database = require('better-sqlite3');
 
-// Open your database
 const db = new Database('data/skg-breath.db');
 
-// GET /api/map
 router.get('/', (req, res) => {
   try {
-    // Fetch municipalities with their latest measurements
     const municipalities = db.prepare(`
       SELECT m.name AS municipality, m.lat, m.lon,
              meas.time, meas.co, meas.no, meas.no2, meas.so2, meas.o3
@@ -21,6 +18,7 @@ router.get('/', (req, res) => {
       JOIN measurements meas
         ON meas.municipality_id = latest.municipality_id
        AND meas.time = latest.max_time
+      WHERE m.lat IS NOT NULL AND m.lon IS NOT NULL
       ORDER BY m.name
     `).all();
 

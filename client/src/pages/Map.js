@@ -18,7 +18,7 @@ const MapPage = () => {
           minZoom={11}
           maxZoom={14}
           scrollWheelZoom={true}
-          zoomControl={true} // disable default position
+          zoomControl={true}
           style={{ height: '100%', width: '100%' }}
           maxBounds={[
             [40.48, 22.85],
