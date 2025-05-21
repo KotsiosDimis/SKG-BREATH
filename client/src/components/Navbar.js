@@ -28,7 +28,7 @@ const AppNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
-            <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Live Data</Nav.Link>
+            <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
             <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
             <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
           </Nav>

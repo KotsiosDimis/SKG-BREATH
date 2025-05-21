@@ -10,7 +10,6 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.5",
-    "gh-pages": "^6.3.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "react": "^19.1.0",
@@ -51,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "gh-pages": "^6.3.0"
   }
 }
