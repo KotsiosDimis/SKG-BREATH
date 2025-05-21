@@ -1,26 +1,28 @@
 .fullscreen-section {
-    height: 100vh;
-    padding: 2rem;
-  }
-  
-  #hero .hero-content {
-    padding-top: 28vh; /* pushes content down slightly */
-  }
-  
-  .hero-title {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 4.5rem;
-    font-weight: 400; /* Less bold */
-    letter-spacing: 1.5px;
-    color: #222;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  }
-  
-  .lead {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    color: #444;
-    margin-top: 1rem;
-  }
+  height: 100vh;
+  padding: 2rem;
+  background-color: var(--color-background);
+  color: var(--text-main);
+}
+
+#hero .hero-content {
+  padding-top: 28vh; /* pushes content down slightly */
+}
+
+.hero-title {
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.lead {
+  font-family: var(--font-main);
+  font-size: var(--font-size-lg);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: var(--text-soft);
+  margin-top: 1rem;
+}

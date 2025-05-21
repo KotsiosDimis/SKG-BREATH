@@ -2,54 +2,53 @@
    COLOR VARIABLES - LIGHT THEME (default)
 ================================================== */
 :root {
-  /* Brand colors */
-  --color-primary: #007bff;
-  --color-secondary: #6c757d;
-  --color-accent: #00c9a7;
+  --color-primary: #2c3e50;       /* Σκούρο γκρι-μπλε */
+  --color-secondary: #6c757d;     /* Απαλό business gray */
+  --color-accent: #7dbbc3;        /* Muted κυανό-γκρι */
 
-  /* UI background colors */
-  --color-light: #f8f9fa;
-  --color-dark: #343a40;
-  --color-background: var(--color-light);
-  --color-surface: #ffffff;
+  --color-light: #f8f9fa;         /* Off-white */
+  --color-dark: #1c1f23;          /* Very dark gray */
+  --color-background:#e5e7eb; ;    /* Απαλό γκρι background */
+  --color-surface: #ffffff;       /* Cards, panels */
 
-  /* Text colors */
-  --text-main: #222;
-  --text-soft: #555;
+  --text-main: #111111;           /* Σκούρο ανθρακί */
+  --text-soft: #111111;           /* Μαλακό γκρι κείμενο */
 
-  /* Typography */
   --font-main: 'Quicksand', sans-serif;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 4.5rem;
 }
 
-/* ==================================================
-   COLOR VARIABLES - DARK THEME
-================================================== */
 .theme-dark {
-  --color-primary: #222;
-  --color-secondary: #444;
-  --color-accent: #00f7ff;
+  --color-primary: #1e2a33;       /* Σκούρο business blue-gray */
+  --color-secondary: #3e4c59;
+  --color-accent: #5fa8a9;        /* Σοβαρό teal */
 
-  --color-light: #f8f9fa;
-  --color-dark: #f0f0f0;
-  --color-background: #121212;
-  --color-surface: #1e1e1e;
+  --color-light: #d1d5db;
+  --color-dark: #f3f4f6;
+  --color-background: #181e22;
+  --color-surface: #2b2f32;
 
-  --text-main: #f0f0f0;
-  --text-soft: #ccc;
+  --text-main: #e4e4e4;
+  --text-soft: #a1a1a1;
 }
 
 /* ==================================================
    BASE / GLOBAL STYLES
 ================================================== */
-body {
-  font-family: var(--font-main);
-  color: var(--text-main);
-  background-color: var(--color-background);
+html, body, #root {
+  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-main);
+  color: var(--text-main);
+  background-color: var(--color-background) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -83,13 +82,7 @@ p {
   font-weight: 300;
   color: var(--text-soft);
   line-height: 1.6;
-} 
-
-/* Add this to LAYOUT section if needed */
-.pt-5 {
-  padding-top: 5rem !important;
 }
-
 
 .lead {
   font-size: var(--font-size-lg);
@@ -104,7 +97,8 @@ p {
 .fullscreen-section {
   height: 100vh;
   padding: 2rem;
-  background-color: var(--color-background);
+  background-color: var(--color-background) !important;
+  color: var(--text-main) !important;
 }
 
 .section-surface {
@@ -115,18 +109,20 @@ p {
 }
 
 /* ==================================================
-   TEXT & BACKGROUND COLOR UTILITIES
+   TEXT & BACKGROUND COLOR UTILITIES (Override Bootstrap)
 ================================================== */
+.bg-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-light) !important;
+}
+
 .text-primary {
   color: var(--color-primary) !important;
 }
 
-.text-secondary {
-  color: var(--color-secondary) !important;
-}
-
-.text-accent {
-  color: var(--color-accent) !important;
+.bg-dark {
+  background-color: var(--color-dark) !important;
+  color: var(--color-light) !important;
 }
 
 .text-soft {
@@ -137,19 +133,27 @@ p {
   background-color: var(--color-light) !important;
 }
 
-.bg-dark {
-  background-color: var(--color-dark) !important;
-  color: var(--color-light) !important;
-}
-
-.bg-primary {
-  background-color: var(--color-primary) !important;
-  color: var(--color-light) !important;
+.text-secondary {
+  color: var(--color-secondary) !important;
 }
 
 .bg-accent {
   background-color: var(--color-accent) !important;
   color: var(--color-light) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+  color: var(--text-main);
+}
+
+.bg-background {
+  background-color: var(--color-background);
+  color: var(--text-main);
 }
 
 /* ==================================================
@@ -212,16 +216,6 @@ p {
   margin-top: 3rem !important;
 }
 
-.bg-surface {
-  background-color: var(--color-surface);
-  color: var(--text-main);
-}
-
-.bg-background {
-  background-color: var(--color-background);
-  color: var(--text-main);
-}
-
 .mb-4 {
   margin-bottom: 2rem !important;
 }
@@ -230,4 +224,22 @@ p {
   margin-bottom: 3rem !important;
 }
 
+.pt-5 {
+  padding-top: 5rem !important;
+}
 
+/* ==================================================
+   HOME SECTION OVERRIDES
+================================================== */
+#hero .hero-content {
+  padding-top: 28vh;
+}
+
+.hero-title {
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
