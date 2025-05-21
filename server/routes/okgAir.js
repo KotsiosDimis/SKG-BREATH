@@ -52,7 +52,7 @@ router.get('/data', (req, res) => {
   res.json(result);
 });
 
-// 🟢 Average pollutant values by day/month/year
+// 🟢 Average pollutant values by day/month/year (fixed alias name)
 router.get('/average', (req, res) => {
   const { municipality, by = 'day', pollutant } = req.query;
 
@@ -71,12 +71,12 @@ router.get('/average', (req, res) => {
   else groupExpr = `strftime('%Y-%m-%d', time)`;
 
   const query = `
-    SELECT ${groupExpr} as group, AVG(${pollutant}) as avg
+    SELECT ${groupExpr} AS grouping, AVG(${pollutant}) AS avg
     FROM measurements
     WHERE municipality_id = ?
       AND ${pollutant} IS NOT NULL
-    GROUP BY group
-    ORDER BY group
+    GROUP BY grouping
+    ORDER BY grouping
   `;
 
   const rows = db.prepare(query).all(muniRow.id);
