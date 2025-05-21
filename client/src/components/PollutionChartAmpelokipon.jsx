@@ -36,7 +36,7 @@ const PollutionChartAmpelokipon = () => {
         keys.map(p =>
           fetch(`${endpoint}${p}`)
             .then(res => res.json())
-            .then(values => values.map(d => ({ group: d.group, [p]: d.avg })))
+            .then(values => values.map(d => ({ group: d.grouping, [p]: d.avg })))
         )
       )
         .then(all => {
@@ -88,7 +88,7 @@ const PollutionChartAmpelokipon = () => {
           </label>
         ))}
       </div>
-    <p>Ampelokipoi</p>
+    <h3>Ampelokipoi</h3>
       <ResponsiveContainer>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
