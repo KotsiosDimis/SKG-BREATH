@@ -81,4 +81,16 @@ router.get('/average', (req, res) => {
   res.json(result);
 });
 
+router.get('/:municipality', (req, res) => {
+  const { municipality } = req.params;
+  const key = municipality.toLowerCase(); // ensure case-insensitive match
+  const data = datasets[key];
+
+  if (!data) {
+    return res.status(404).json({ error: `Data for '${key}' not found.` });
+  }
+
+  res.json(data);
+});
+
 module.exports = router;
