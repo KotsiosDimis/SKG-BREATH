@@ -8,18 +8,9 @@ app.use(cors());
 const port = 3001;
 
 // Routes
-const openWeatherRoute = require('./routes/openWeather');
-//const eeaParquet = require('./routes/eeaParquet');
-const readParquetRoute = require('./routes/readParquet');
-const dimosThessalonikisRoute = require('./routes/dimosThessalonikis');
 const okgAirRoute = require('./routes/okgAir');
 const mapRoute = require('./routes/map');
 
-
-app.use('/api/open-weather', openWeatherRoute);
-//app.use('/api/eea', eeaParquet);
-app.use('/api/read', readParquetRoute);
-app.use('/api/dimos-thessalonikis', dimosThessalonikisRoute);
 app.use('/api/okgAir',okgAirRoute);
 app.use('/api/map',mapRoute)
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Marker, Popup, Circle, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import './MapOverlay.css';
+import '../styles/MapOverlay.css';
 
 const getSeverityColor = (pollutant, value) => {
   if (pollutant === 'co') {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
-import Map1 from '../components/Map1';
+import Map1 from '../components/Map1.js';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';

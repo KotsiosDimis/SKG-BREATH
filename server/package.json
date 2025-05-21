@@ -14,6 +14,7 @@
   "dependencies": {
     "@dsnp/parquetjs": "^1.8.6",
     "axios": "^1.8.4",
+    "better-sqlite3": "^11.10.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",

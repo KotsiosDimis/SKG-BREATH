@@ -18,8 +18,8 @@ const PollutionChartAmpelokipon = () => {
   useEffect(() => {
     const endpoint =
       groupBy === 'hourly'
-        ? 'http://localhost:3001/api/okgAir/ampelokipon'
-        : `http://localhost:3001/api/okgAir/average?municipality=ampelokipon&by=month&pollutant=`;
+        ? 'https://skg-breath.onrender.com/api/okgAir/ampelokipon'
+        : `https://skg-breath.onrender.com/api/okgAir/average?municipality=ampelokipon&by=month&pollutant=`;
 
     if (groupBy === 'hourly') {
       fetch(endpoint)

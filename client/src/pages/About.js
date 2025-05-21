@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import PollutantCard from '../components/PollutantCard';
-import pollutants from '../data/pollutants';
+import pollutants from '../assets/pollutantCardData';
 import '../styles/theme.css';
 
 const About = () => {
