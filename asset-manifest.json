@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SKG-BREATH/static/css/main.7cabd390.css",
-    "main.js": "/SKG-BREATH/static/js/main.a615e7db.js",
+    "main.js": "/SKG-BREATH/static/js/main.b2553944.js",
     "static/js/453.258b012d.chunk.js": "/SKG-BREATH/static/js/453.258b012d.chunk.js",
     "index.html": "/SKG-BREATH/index.html",
     "main.7cabd390.css.map": "/SKG-BREATH/static/css/main.7cabd390.css.map",
-    "main.a615e7db.js.map": "/SKG-BREATH/static/js/main.a615e7db.js.map",
+    "main.b2553944.js.map": "/SKG-BREATH/static/js/main.b2553944.js.map",
     "453.258b012d.chunk.js.map": "/SKG-BREATH/static/js/453.258b012d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cabd390.css",
-    "static/js/main.a615e7db.js"
+    "static/js/main.b2553944.js"
   ]
 }
