@@ -1,16 +1,19 @@
-import React from 'react';
 import Layout from '../components/Layout';
-import PollutionChart from '../components/PollutionChart';
+import PollutionChartAmpelokipon from '../components/PollutionChartAmpelokipon';
+// import PollutionChartDimos_delta from '../components/PollutionChartDimos_delta';
 
-const LiveData = () => {
+const HistoricalData = () => {
   return (
     <Layout>
       <div className="p-4">
-        <h1 className="text-xl font-semibold mb-4">Live Air Quality Data</h1>
-        <PollutionChart />
+        <h1 className="text-xl font-semibold mb-4">Statistics</h1>
+        <div><PollutionChartAmpelokipon/></div>
+        {/* <br/>
+        <div><PollutionChartDimos_delta/></div> */}
+
       </div>
     </Layout>
   );
 };
 
-export default LiveData;
+export default HistoricalData;

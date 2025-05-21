@@ -1,43 +1,154 @@
 import { useEffect, useState } from 'react';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker, Popup, Circle, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import './MapOverlay.css';
 
-const Map = () => {
+const getSeverityColor = (pollutant, value) => {
+  if (pollutant === 'co') {
+    if (value > 300) return '#800080';
+    if (value > 150) return '#ff0000';
+    if (value > 50) return '#ffae42';
+    return '#00e400';
+  }
+  if (pollutant === 'no2') {
+    if (value > 200) return '#800080';
+    if (value > 100) return '#ff0000';
+    if (value > 50) return '#ffae42';
+    return '#00e400';
+  }
+  if (pollutant === 'no') {
+    if (value > 150) return '#800080';
+    if (value > 100) return '#ff0000';
+    if (value > 50) return '#ffae42';
+    return '#00e400';
+  }
+  if (pollutant === 'so2') {
+    if (value > 125) return '#800080';
+    if (value > 75) return '#ff0000';
+    if (value > 25) return '#ffae42';
+    return '#00e400';
+  }
+  if (pollutant === 'o3') {
+    if (value > 180) return '#800080';
+    if (value > 120) return '#ff0000';
+    if (value > 60) return '#ffae42';
+    return '#00e400';
+  }
+  return '#999';
+};
+
+const pollutantStyles = {
+  co: { multiplier: 2 },
+  no: { multiplier: 400 },
+  no2: { multiplier: 30 },
+  so2: { multiplier: 50 },
+  o3: { multiplier: 25 },
+};
+
+const Map1 = () => {
+  const map = useMap();
   const [data, setData] = useState([]);
+  const [visiblePollutants, setVisiblePollutants] = useState({
+    co: true,
+    no: true,
+    no2: true,
+    so2: true,
+    o3: true,
+  });
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/map')
+    fetch('https://skg-breath.onrender.com/api/map')
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error('Failed to fetch /api/map', err));
   }, []);
 
+  const handleToggle = (pollutant) => {
+    setVisiblePollutants((prev) => ({
+      ...prev,
+      [pollutant]: !prev[pollutant],
+    }));
+  };
+
+  const customIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  });
+
   return (
     <>
+      <div className="overlay top-right">
+        <button className="collapse-btn" onClick={() => setCollapsed(!collapsed)}>
+          {collapsed ? '▶' : '✕'}
+        </button>
+        {!collapsed && (
+          <div className="toggle-list">
+            {Object.keys(pollutantStyles).map((pollutant) => (
+              <label key={pollutant} className="switch-label">
+                <span>{pollutant.toUpperCase()}</span>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    checked={visiblePollutants[pollutant]}
+                    onChange={() => handleToggle(pollutant)}
+                  />
+                  <span className="slider round"></span>
+                </label>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+
       {data.map((station, idx) => (
-        <Marker
-          key={idx}
-          position={[station.lat, station.lon]}
-          icon={L.icon({
-            iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+        <div key={idx}>
+          {Object.keys(pollutantStyles).map((pollutant) => {
+            const value = station[pollutant];
+            const visible = visiblePollutants[pollutant];
+            if (value && visible) {
+              const color = getSeverityColor(pollutant, value);
+              return (
+                <Circle
+                  key={`${idx}-${pollutant}`}
+                  center={[station.lat, station.lon]}
+                  pathOptions={{
+                    color,
+                    fillColor: color,
+                    fillOpacity: 0.4,
+                  }}
+                  radius={value * pollutantStyles[pollutant].multiplier}
+                />
+              );
+            }
+            return null;
           })}
-        >
-          <Popup>
-            <strong>{station.municipality}</strong><br />
-            CO: {station.co?.toFixed(2)}<br />
-            NO: {station.no?.toFixed(4)}<br />
-            NO₂: {station.no2?.toFixed(2)}<br />
-            SO₂: {station.so2?.toFixed(2)}<br />
-            O₃: {station.o3?.toFixed(2)}
-          </Popup>
-        </Marker>
+
+          <Marker
+            position={[station.lat, station.lon]}
+            icon={customIcon}
+            eventHandlers={{
+              click: () => {
+                map.setView([station.lat, station.lon], 14, { animate: true });
+              },
+            }}
+          >
+            <Popup>
+              <strong>{station.municipality}</strong><br />
+              CO: {station.co?.toFixed(2)}<br />
+              NO: {station.no?.toFixed(4)}<br />
+              NO₂: {station.no2?.toFixed(2)}<br />
+              SO₂: {station.so2?.toFixed(2)}<br />
+              O₃: {station.o3?.toFixed(2)}
+            </Popup>
+          </Marker>
+        </div>
       ))}
     </>
   );
 };
 
-export default Map;
+export default Map1;

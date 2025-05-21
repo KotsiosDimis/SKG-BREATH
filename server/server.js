@@ -13,6 +13,7 @@ const openWeatherRoute = require('./routes/openWeather');
 const readParquetRoute = require('./routes/readParquet');
 const dimosThessalonikisRoute = require('./routes/dimosThessalonikis');
 const okgAirRoute = require('./routes/okgAir');
+const mapRoute = require('./routes/map');
 
 
 app.use('/api/open-weather', openWeatherRoute);
@@ -20,6 +21,7 @@ app.use('/api/open-weather', openWeatherRoute);
 app.use('/api/read', readParquetRoute);
 app.use('/api/dimos-thessalonikis', dimosThessalonikisRoute);
 app.use('/api/okgAir',okgAirRoute);
+app.use('/api/map',mapRoute)
 
 app.get('/', (req, res) => {
   res.send('Welcome to SKG-BREATH backend!');
