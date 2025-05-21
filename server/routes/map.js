@@ -5,7 +5,7 @@ const path = require('path');
 const loadCsv = require('../utils/loadCsv');
 
 // Assuming this is shared
-const DATA_DIR = path.join(__dirname, '../data');
+const DATA_DIR = path.join(__dirname, '../datasets/Open_Knolage_Greece/');
 const datasets = {};
 
 //coordinates for municipalities 
