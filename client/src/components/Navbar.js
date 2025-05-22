@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, Form } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
@@ -17,23 +16,24 @@ const AppNavbar = () => {
 
   return (
     <Navbar expand="lg" className="navbar-custom">
-      <Container>
-        {/* Logo */}
-        <div className="d-flex align-items-center me-3">
-          <span className="navbar-logo-text">SKG</span>
-          <Navbar.Brand as={Link} to="/" className="ms-2">Breath</Navbar.Brand>
+      <Container fluid className="d-flex justify-content-between align-items-center">
+
+        {/* ✅ Left: Branding */}
+        <div className="d-flex align-items-center ps-3">
+          <span className="navbar-logo-text fw-bold text-light">SKG</span>
+          <span className="ms-2 fw-bold text-light">Breath</span>
         </div>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
-            <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
-            <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
-            <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
-          </Nav>
+        {/* ✅ Center: Nav links */}
+        <Nav className="mx-auto text-center">
+          <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
+          <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
+          <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
+          <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
+        </Nav>
 
-          {/* 🌙 Dark Mode Toggle */}
+        {/* ✅ Right: Dark mode toggle */}
+        <div className="d-flex align-items-center pe-3">
           <Form.Switch
             id="darkModeSwitch"
             label="Dark Mode"
@@ -41,7 +41,8 @@ const AppNavbar = () => {
             onChange={() => setDarkMode(!darkMode)}
             className="text-light"
           />
-        </Navbar.Collapse>
+        </div>
+
       </Container>
     </Navbar>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import '../styles/theme.css';
+import whiteTower from '../assets/images/white-tower.svg';
 
 const Home = () => {
   return (
@@ -9,11 +10,24 @@ const Home = () => {
         {/* Hero Section */}
         <section
           id="hero"
-          className="fullscreen-section bg-accent text-light d-flex flex-column justify-content-center align-items-center text-center"
+          className="fullscreen-section bg-accent text-light d-flex align-items-center"
         >
-          <div className="hero-content">
-            <h1 className="hero-title">SKG BREATH</h1>
-            <p className="lead">Η Εφαρμογή που Σου Λέει Τι Αναπνέεις</p>
+          <div className="container">
+            <div className="row align-items-center">
+              
+              {/* Left: Title & Subtitle */}
+              <div className="col-md-6 text-start mt-n3">
+                <h1 className="hero-title">SKG BREATH</h1>
+                <h2 className="lead">Η Εφαρμογή που Σου Λέει Τι Αναπνέεις</h2>
+              </div>
+
+              {/* Right: SVG or Image */}
+              <div className="col-md-6 text-center">
+                {/* Replace this with your actual SVG or image */}
+                <img src={whiteTower} alt="White Tower of Thessaloniki" className="img-fluid" />
+              </div>
+
+            </div>
           </div>
         </section>
 
