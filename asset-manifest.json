@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/SKG-BREATH/static/css/main.daf714f3.css",
-    "main.js": "/SKG-BREATH/static/js/main.ba4073c3.js",
+    "main.css": "/SKG-BREATH/static/css/main.212dc88b.css",
+    "main.js": "/SKG-BREATH/static/js/main.781a15d8.js",
     "static/js/453.258b012d.chunk.js": "/SKG-BREATH/static/js/453.258b012d.chunk.js",
+    "static/media/white-tower.svg": "/SKG-BREATH/static/media/white-tower.b005c3e9afc37cc363965b6977dfa28f.svg",
     "index.html": "/SKG-BREATH/index.html",
-    "main.daf714f3.css.map": "/SKG-BREATH/static/css/main.daf714f3.css.map",
-    "main.ba4073c3.js.map": "/SKG-BREATH/static/js/main.ba4073c3.js.map",
+    "main.212dc88b.css.map": "/SKG-BREATH/static/css/main.212dc88b.css.map",
+    "main.781a15d8.js.map": "/SKG-BREATH/static/js/main.781a15d8.js.map",
     "453.258b012d.chunk.js.map": "/SKG-BREATH/static/js/453.258b012d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.daf714f3.css",
-    "static/js/main.ba4073c3.js"
+    "static/css/main.212dc88b.css",
+    "static/js/main.781a15d8.js"
   ]
 }
