@@ -108,12 +108,13 @@ const Map1 = () => {
             >
               <Popup>
                 <strong>{station.municipality}</strong><br />
-                CO: {station.co?.toFixed(2)}<br />
-                NO: {station.no?.toFixed(4)}<br />
-                NO₂: {station.no2?.toFixed(2)}<br />
-                SO₂: {station.so2?.toFixed(2)}<br />
-                O₃: {station.o3?.toFixed(2)}
-              </Popup>
+                CO: {station.co?.toFixed(2)} μg/m³<br />
+                NO: {station.no?.toFixed(4)} μg/m³<br />
+                NO₂: {station.no2?.toFixed(2)} μg/m³<br />
+                SO₂: {station.so2?.toFixed(2)} μg/m³<br />
+                O₃: {station.o3?.toFixed(2)} μg/m³
+             </Popup>
+
             </Marker>
           </div>
         );

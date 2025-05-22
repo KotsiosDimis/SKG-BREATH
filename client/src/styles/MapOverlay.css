@@ -1,74 +1,89 @@
+/* Overlay container */
 .overlay {
   position: absolute;
   background: rgba(255, 255, 255, 0.95);
-  padding: 12px 16px;
+  padding: 20px 24px;
   border-radius: 12px;
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  font-size: 17px;
+  max-width: 320px;
 }
 
+/* Position overlay top-right but slightly left to avoid scrollbar */
 .top-right {
   top: 10px;
-  right: 10px;
+  right: 30px;
 }
 
+/* List of toggle switches */
 .toggle-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px; /* increased spacing */
 }
 
+/* Each toggle label */
 .switch-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
+  padding: 8px 0;
 }
 
-/* Toggle switch */
+/* Toggle switch base */
 .switch {
   position: relative;
   display: inline-block;
-  width: 46px;
-  height: 24px;
+  width: 60px;   /* increased width */
+  height: 32px;  /* increased height */
 }
 
+/* Hide native checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Slider background */
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
-  transition: .4s;
-  border-radius: 24px;
+  transition: 0.4s;
+  border-radius: 32px;
 }
 
+/* Slider knob */
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px; width: 18px;
-  left: 3px; bottom: 3px;
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
+/* When checked */
 input:checked + .slider {
   background-color: #2196F3;
 }
 
 input:checked + .slider:before {
-  transform: translateX(22px);
+  transform: translateX(28px); /* adjusted to match new switch width */
 }
 
-/* Minimize button */
+/* Collapse button (top-left of overlay) */
 .collapse-btn {
   position: absolute;
   top: 5px;
