@@ -1,7 +1,9 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import '../styles/theme.css';
-import whiteTower from '../assets/images/white-tower.svg';
+import { ReactComponent as WhiteTower } from '../assets/images/white-tower.svg';
+
+
 
 const Home = () => {
   return (
@@ -16,15 +18,16 @@ const Home = () => {
             <div className="row align-items-center">
               
               {/* Left: Title & Subtitle */}
-              <div className="col-md-6 text-start mt-n3">
-                <h1 className="hero-title">SKG BREATH</h1>
+              <div className="col-md-6 text-start mt-n6">
+                <h1 className="hero-title col-md-6 text-start hero-lifted">SKG BREATH</h1>
+                <br />
                 <h2 className="lead">Η Εφαρμογή που Σου Λέει Τι Αναπνέεις</h2>
               </div>
 
               {/* Right: SVG or Image */}
               <div className="col-md-6 text-center">
                 {/* Replace this with your actual SVG or image */}
-                <img src={whiteTower} alt="White Tower of Thessaloniki" className="img-fluid" />
+                <WhiteTower className="white-tower-icon" />
               </div>
 
             </div>

@@ -2,33 +2,36 @@
    COLOR VARIABLES - LIGHT THEME (default)
 ================================================== */
 :root {
-  --color-primary: #2c3e50;       /* Σκούρο γκρι-μπλε */
-  --color-secondary: #6c757d;     /* Απαλό business gray */
-  --color-accent: #7dbbc3;        /* Muted κυανό-γκρι */
+  --color-primary: #2c3e50;
+  --color-secondary: #6c757d;
+  --color-accent: #7dbbc3;
 
-  --color-light: #f8f9fa;         /* Off-white */
-  --color-dark: #1c1f23;          /* Very dark gray */
-  --color-background:#e5e7eb; ;    /* Απαλό γκρι background */
-  --color-surface: #ffffff;       /* Cards, panels */
+  --color-light: #f8f9fa;
+  --color-dark: #1c1f23;
+  --color-background: #e5e7eb;
+  --color-surface: #ffffff;
 
-  --text-main: #111111;           /* Σκούρο ανθρακί */
-  --text-soft: #111111;           /* Μαλακό γκρι κείμενο */
+  --text-main: #111111;
+  --text-soft: #111111;
 
   --font-main: 'Quicksand', sans-serif;
   --font-size-base: 1rem;
-  --font-size-lg: 1.25rem;
+  --font-size-lg: 1.5rem;
   --font-size-xl: 4.5rem;
 }
 
+/* ==================================================
+   DARK THEME OVERRIDES
+================================================== */
 .theme-dark {
-  --color-background: #0d0d0d;      /* Μαύρο φόντο */
-  --color-surface: #1a1a1a;         /* Γκρι επιφάνειες (cards, sections) */
-  --color-primary: #1e90ff;         /* Flat επαγγελματικό μπλε για links/headings */
-  --color-secondary: #2c2c2c;       /* Γκρι για κουμπιά, panels */
-  --color-accent: #3b82f6;          /* Απλό μπλε για hover ή τονισμούς */
+  --color-background: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-primary: #1e90ff;
+  --color-secondary: #2c2c2c;
+  --color-accent: #3b82f6;
 
-  --text-main: #ffffff;             /* Καθαρό λευκό για τίτλους και κείμενο */
-  --text-soft: #b3b3b3;             /* Μαλακό γκρι για υποκείμενο κείμενο */
+  --text-main: #ffffff;
+  --text-soft: #b3b3b3;
 
   --color-light: #e5e7eb;
   --color-dark: #ffffff;
@@ -38,7 +41,6 @@
   --font-size-lg: 1.25rem;
   --font-size-xl: 4.5rem;
 }
-
 
 /* ==================================================
    BASE / GLOBAL STYLES
@@ -63,17 +65,17 @@ body {
 ================================================== */
 h1 {
   font-size: var(--font-size-xl);
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  color: var(--text-main);
-  margin: 0 0 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  color: var(--text-main);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
 }
 
 h3 {
@@ -101,8 +103,10 @@ p {
    SECTION & LAYOUT
 ================================================== */
 .fullscreen-section {
-  height: 100vh;
-  padding: 2rem;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
   background-color: var(--color-background) !important;
   color: var(--text-main) !important;
 }
@@ -115,7 +119,71 @@ p {
 }
 
 /* ==================================================
-   TEXT & BACKGROUND COLOR UTILITIES (Override Bootstrap)
+   HERO SECTION
+================================================== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-accent) !important;
+  color: var(--text-main) !important;
+}
+
+#hero .hero-content {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+#hero .lead {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-soft);
+}
+
+/* Lift title slightly */
+.hero-lifted {
+  margin-top: -40px;
+}
+
+/* Hero image */
+#hero img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  #hero .lead {
+    font-size: 1.25rem;
+  }
+
+  .hero-lifted {
+    margin-top: 0;
+  }
+}
+
+/* ==================================================
+   TEXT & BACKGROUND COLOR UTILITIES
 ================================================== */
 .bg-primary {
   background-color: var(--color-primary) !important;
@@ -235,23 +303,8 @@ p {
 }
 
 /* ==================================================
-   HOME SECTION OVERRIDES
+   DARK MODE FIXES FOR HOME
 ================================================== */
-#hero .hero-content {
-  padding-top: 28vh;
-}
-
-.hero-title {
-  font-family: var(--font-main);
-  font-size: var(--font-size-xl);
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  color: var(--text-main);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-}
-/* =============================
-   HOME PAGE DARK MODE FIX ONLY
-============================= */
 .theme-dark #hero,
 .theme-dark #about,
 .theme-dark #air-quality {
@@ -280,3 +333,24 @@ p {
   background-color: var(--color-accent) !important;
   color: var(--text-main) !important;
 }
+
+/* SVG LOGO COLOR CONTROL */
+.skg-logo {
+  fill: #111111;
+  width: 2.5rem;
+  height: auto;
+  transition: fill 0.3s ease;
+}
+
+.theme-dark .skg-logo {
+  fill: #e5e7eb;
+}
+
+.white-tower-icon {
+  color: #111;
+}
+
+.theme-dark .white-tower-icon {
+  color: #e5e7eb;
+}
+
