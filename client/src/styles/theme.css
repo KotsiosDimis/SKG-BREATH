@@ -2,36 +2,46 @@
    COLOR VARIABLES - LIGHT THEME (default)
 ================================================== */
 :root {
-  --color-primary: #2c3e50;       /* Σκούρο γκρι-μπλε */
-  --color-secondary: #6c757d;     /* Απαλό business gray */
-  --color-accent: #7dbbc3;        /* Muted κυανό-γκρι */
+  --color-primary: #2c3e50;
+  --color-secondary: #6c757d;
+  --color-accent: #7dbbc3;
 
-  --color-light: #f8f9fa;         /* Off-white */
-  --color-dark: #1c1f23;          /* Very dark gray */
-  --color-background:#e5e7eb; ;    /* Απαλό γκρι background */
-  --color-surface: #ffffff;       /* Cards, panels */
+  --color-background: #98d8e0;
+  --color-surface: #7dbbc3;
 
-  --text-main: #111111;           /* Σκούρο ανθρακί */
-  --text-soft: #111111;           /* Μαλακό γκρι κείμενο */
+  --color-light: #f8f9fa;
+  --color-dark: #1c1f23;
+
+  --text-main: #111111;
+  --text-soft: #111111;
+
+  --font-main: 'Quicksand', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 4.5rem;
+}
+
+/* ==================================================
+   DARK THEME OVERRIDES
+================================================== */
+.theme-dark {
+  --color-primary: #1e90ff;
+  --color-secondary: #2c2c2c;
+  --color-accent: #3b82f6;
+
+  --color-background: #0d0d0d;
+  --color-surface: #1a1a1a;
+
+  --text-main: #ffffff;
+  --text-soft: #b3b3b3;
+
+  --color-light: #e5e7eb;
+  --color-dark: #ffffff;
 
   --font-main: 'Quicksand', sans-serif;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 4.5rem;
-}
-
-.theme-dark {
-  --color-primary: #1e2a33;       /* Σκούρο business blue-gray */
-  --color-secondary: #3e4c59;
-  --color-accent: #5fa8a9;        /* Σοβαρό teal */
-
-  --color-light: #d1d5db;
-  --color-dark: #f3f4f6;
-  --color-background: #181e22;
-  --color-surface: #2b2f32;
-
-  --text-main: #e4e4e4;
-  --text-soft: #a1a1a1;
 }
 
 /* ==================================================
@@ -57,17 +67,17 @@ body {
 ================================================== */
 h1 {
   font-size: var(--font-size-xl);
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  color: var(--text-main);
-  margin: 0 0 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  color: var(--text-main);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
 }
 
 h3 {
@@ -95,8 +105,10 @@ p {
    SECTION & LAYOUT
 ================================================== */
 .fullscreen-section {
-  height: 100vh;
-  padding: 2rem;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
   background-color: var(--color-background) !important;
   color: var(--text-main) !important;
 }
@@ -108,8 +120,85 @@ p {
   border-radius: 12px;
 }
 
+/* Custom airy translucent section */
+.section-glass {
+  background: rgba(44, 62, 80, 0.2); /* Semi-transparent version of --color-primary */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 6rem 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+
 /* ==================================================
-   TEXT & BACKGROUND COLOR UTILITIES (Override Bootstrap)
+   HERO SECTION
+================================================== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-accent) !important;
+  color: var(--text-main) !important;
+}
+
+#hero .hero-content {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+#hero .lead {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-soft);
+}
+
+/* Lift title slightly */
+.hero-lifted {
+  margin-top: -40px;
+}
+
+/* Hero image */
+#hero img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  #hero .lead {
+    font-size: 1.25rem;
+  }
+
+  .hero-lifted {
+    margin-top: 0;
+  }
+}
+
+/* ==================================================
+   TEXT & BACKGROUND COLOR UTILITIES
 ================================================== */
 .bg-primary {
   background-color: var(--color-primary) !important;
@@ -229,17 +318,55 @@ p {
 }
 
 /* ==================================================
-   HOME SECTION OVERRIDES
+   DARK MODE FIXES FOR HOME
 ================================================== */
-#hero .hero-content {
-  padding-top: 28vh;
+.theme-dark #hero,
+.theme-dark #about,
+.theme-dark #air-quality {
+  background-color: var(--color-background) !important;
+  color: var(--text-main) !important;
 }
 
-.hero-title {
-  font-family: var(--font-main);
-  font-size: var(--font-size-xl);
-  font-weight: 400;
-  letter-spacing: 1.5px;
+.theme-dark #hero .hero-title,
+.theme-dark #about h2,
+.theme-dark #air-quality h2 {
   color: var(--text-main);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
+
+.theme-dark #hero p,
+.theme-dark #about p,
+.theme-dark #air-quality p,
+.theme-dark .lead {
+  color: var(--text-soft);
+}
+
+.theme-dark .bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.theme-dark .bg-accent {
+  background-color: var(--color-accent) !important;
+  color: var(--text-main) !important;
+}
+
+/* SVG LOGO COLOR CONTROL */
+.skg-logo {
+  fill: #111111;
+  width: 2.5rem;
+  height: auto;
+  transition: fill 0.3s ease;
+}
+
+.theme-dark .skg-logo {
+  fill: #e5e7eb;
+}
+
+.white-tower-icon {
+  color: #111;
+}
+
+.theme-dark .white-tower-icon {
+  color: #e5e7eb;
+}
+
+
