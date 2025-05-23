@@ -60,7 +60,7 @@ const PollutionChartsSingleStation = () => {
     };
 
     fetchData();
-  }, [selectedStation, groupBy]);
+  }, [selectedStation, groupBy, pollutants]); 
 
   const handleToggle = key => {
     setPollutants(prev => ({ ...prev, [key]: !prev[key] }));
