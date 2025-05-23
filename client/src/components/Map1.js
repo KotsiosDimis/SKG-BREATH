@@ -1,15 +1,27 @@
+// Map1.js
 import { useEffect, useState } from 'react';
-import { Marker, Popup, Circle, useMap } from 'react-leaflet';
+import { Marker, Popup, Circle,} from 'react-leaflet';
 import L from 'leaflet';
 import '../styles/MapOverlay.css';
 
 const getSeverityColor = (pollutant, value) => {
-  if (pollutant === 'co') return value > 300 ? '#800080' : value > 150 ? '#ff0000' : value > 50 ? '#ffae42' : '#00e400';
-  if (pollutant === 'no2') return value > 200 ? '#800080' : value > 100 ? '#ff0000' : value > 50 ? '#ffae42' : '#00e400';
-  if (pollutant === 'no') return value > 150 ? '#800080' : value > 100 ? '#ff0000' : value > 50 ? '#ffae42' : '#00e400';
-  if (pollutant === 'so2') return value > 125 ? '#800080' : value > 75 ? '#ff0000' : value > 25 ? '#ffae42' : '#00e400';
-  if (pollutant === 'o3') return value > 180 ? '#800080' : value > 120 ? '#ff0000' : value > 60 ? '#ffae42' : '#00e400';
+  if (value == null) return '#999';
+  if (pollutant === 'co') return value > 7000 ? '#ff0000' : value > 4000 ? '#ffae42' : '#00e400';
+  if (pollutant === 'no') return value > 100 ? '#ff0000' : value > 50 ? '#ffae42' : '#00e400';
+  if (pollutant === 'no2') return value > 400 ? '#ff0000' : value > 200 ? '#ffae42' : '#00e400';
+  if (pollutant === 'so2') return value > 500 ? '#ff0000' : value > 350 ? '#ffae42' : '#00e400';
+  if (pollutant === 'o3') return value > 180 ? '#ff0000' : value > 100 ? '#ffae42' : '#00e400';
   return '#999';
+};
+
+const getSeverityLabel = (pollutant, value) => {
+  if (value == null) return 'Άγνωστο';
+  if (pollutant === 'co') return value > 7000 ? 'Κακή Ποιότητα' : value > 4000 ? 'Μέτρια Ποιότητα' : 'Καλή Ποιότητα';
+  if (pollutant === 'no') return value > 100 ? 'Κακή Ποιότητα' : value > 50 ? 'Μέτρια Ποιότητα' : 'Καλή Ποιότητα';
+  if (pollutant === 'no2') return value > 400 ? 'Κακή Ποιότητα' : value > 200 ? 'Μέτρια Ποιότητα' : 'Καλή Ποιότητα';
+  if (pollutant === 'so2') return value > 500 ? 'Κακή Ποιότητα' : value > 350 ? 'Μέτρια Ποιότητα' : 'Καλή Ποιότητα';
+  if (pollutant === 'o3') return value > 180 ? 'Κακή Ποιότητα' : value > 100 ? 'Μέτρια Ποιότητα' : 'Καλή Ποιότητα';
+  return 'Άγνωστο';
 };
 
 const pollutantStyles = {
@@ -21,30 +33,17 @@ const pollutantStyles = {
 };
 
 const Map1 = () => {
-  const map = useMap();
   const [data, setData] = useState([]);
-  const [visiblePollutants, setVisiblePollutants] = useState({
-    co: true,
-    no: true,
-    no2: true,
-    so2: true,
-    o3: true,
-  });
+  const [visiblePollutants, setVisiblePollutants] = useState({ co: true, no: true, no2: true, so2: true, o3: true });
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('2024-12-31');
 
   useEffect(() => {
-    fetch('https://skg-breath.onrender.com/api/map')
+    fetch(`https://skg-breath.onrender.com/api/map?date=${selectedDate}`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error('Failed to fetch /api/map', err));
-  }, []);
-
-  const handleToggle = (pollutant) => {
-    setVisiblePollutants((prev) => ({
-      ...prev,
-      [pollutant]: !prev[pollutant],
-    }));
-  };
+  }, [selectedDate]);
 
   const customIcon = L.icon({
     iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
@@ -54,87 +53,59 @@ const Map1 = () => {
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
   });
 
-  const latestTimestamp = data.length > 0 ? data[0].time : null;
-
   return (
     <>
       <div className="overlay top-right">
-        <button className="collapse-btn" onClick={() => setCollapsed(!collapsed)}>
-          {collapsed ? '▶' : '✕'}
-        </button>
+        <button className="collapse-btn" onClick={() => setCollapsed(!collapsed)}>{collapsed ? '▶' : '✕'}</button>
         {!collapsed && (
           <div className="toggle-list">
-            {Object.keys(pollutantStyles).map((pollutant) => (
-              <label key={pollutant} className="switch-label">
-                <span>{pollutant.toUpperCase()}</span>
+            {Object.keys(pollutantStyles).map((p) => (
+              <label key={p} className="switch-label">
+                <span>{p.toUpperCase()}</span>
                 <label className="switch">
-                  <input
-                    type="checkbox"
-                    checked={visiblePollutants[pollutant]}
-                    onChange={() => handleToggle(pollutant)}
-                  />
+                  <input type="checkbox" checked={visiblePollutants[p]} onChange={() => setVisiblePollutants(prev => ({ ...prev, [p]: !prev[p] }))} />
                   <span className="slider round"></span>
                 </label>
               </label>
             ))}
+            <input type="date" value={selectedDate} min="2017-01-01" max="2024-12-31" onChange={(e) => setSelectedDate(e.target.value)} className="date-picker mt-3" />
           </div>
         )}
       </div>
 
-      {data.map((station, idx) => {
-        if (station.lat == null || station.lon == null) return null;
-        return (
-          <div key={idx}>
-            {Object.keys(pollutantStyles).map((pollutant) => {
-              const value = station[pollutant];
-              const visible = visiblePollutants[pollutant];
-              if (value && visible) {
-                const color = getSeverityColor(pollutant, value);
-                return (
-                  <Circle
-                    key={`${idx}-${pollutant}`}
-                    center={[station.lat, station.lon]}
-                    pathOptions={{ color, fillColor: color, fillOpacity: 0.4 }}
-                    radius={value * pollutantStyles[pollutant].multiplier}
-                  />
-                );
-              }
-              return null;
-            })}
-            <Marker
-              position={[station.lat, station.lon]}
-              icon={customIcon}
-              eventHandlers={{
-                click: (e) => {
-                  map.flyTo([station.lat, station.lon], 14, {
-                    animate: true,
-                    duration: 1.5,
-                  });
-                  setTimeout(() => {
-                    e.target.openPopup();
-                  }, 700);
-                },
-              }}
-            >
-              <Popup>
-                <strong>{station.municipality}</strong><br />
-                CO: {station.co?.toFixed(2)} μg/m³<br />
-                NO: {station.no?.toFixed(4)} μg/m³<br />
-                NO₂: {station.no2?.toFixed(2)} μg/m³<br />
-                SO₂: {station.so2?.toFixed(2)} μg/m³<br />
-                O₃: {station.o3?.toFixed(2)} μg/m³
-              </Popup>
-            </Marker>
-          </div>
-        );
-      })}
+      <div className="legend bottom-left">
+        <strong>Επεξήγηση Χρωμάτων</strong>
+        <div><span style={{ backgroundColor: '#00e400' }} className="legend-color"></span> Καλή Ποιότητα</div>
+        <div><span style={{ backgroundColor: '#ffae42' }} className="legend-color"></span> Μέτρια Ποιότητα</div>
+        <div><span style={{ backgroundColor: '#ff0000' }} className="legend-color"></span> Κακή Ποιότητα</div>
+      </div>
 
-      {latestTimestamp && (
-        <div className="timestamp-widget bottom-right">
-          <strong>Ημερομηνία Δεδομένων:</strong><br />
-          {new Date(latestTimestamp).toLocaleString('el-GR')}
+      {data.map((station, idx) => (
+        <div key={idx}>
+          {Object.keys(pollutantStyles).map((p) => {
+            const val = station[p];
+            const visible = visiblePollutants[p];
+            if (val && visible) {
+              const color = getSeverityColor(p, val);
+              return <Circle key={`${idx}-${p}`} center={[station.lat, station.lon]} pathOptions={{ color, fillColor: color, fillOpacity: 0.4 }} radius={val * pollutantStyles[p].multiplier} />;
+            }
+            return null;
+          })}
+          <Marker position={[station.lat, station.lon]} icon={customIcon}>
+            <Popup>
+              <strong>{station.municipality}</strong><br />
+              {['co', 'no', 'no2', 'so2', 'o3'].map((p) =>
+                station[p] != null ? (
+                  <div key={p}>
+                    <span><strong>{p.toUpperCase()}:</strong> {station[p].toFixed(2)} μg/m³</span><br />
+                    <span style={{ color: getSeverityColor(p, station[p]), fontWeight: 'bold' }}>{getSeverityLabel(p, station[p])}</span><br />
+                  </div>
+                ) : null
+              )}
+            </Popup>
+          </Marker>
         </div>
-      )}
+      ))}
     </>
   );
 };

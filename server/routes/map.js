@@ -6,23 +6,49 @@ const db = new Database('data/skg-breath.db');
 
 router.get('/', (req, res) => {
   try {
-    const municipalities = db.prepare(`
-      SELECT m.name AS municipality, m.lat, m.lon,
-             meas.time, meas.co, meas.no, meas.no2, meas.so2, meas.o3
-      FROM municipalities m
-      JOIN (
-        SELECT municipality_id, MAX(time) AS max_time
-        FROM measurements
-        GROUP BY municipality_id
-      ) latest ON latest.municipality_id = m.id
-      JOIN measurements meas
-        ON meas.municipality_id = latest.municipality_id
-       AND meas.time = latest.max_time
-      WHERE m.lat IS NOT NULL AND m.lon IS NOT NULL
-      ORDER BY m.name
-    `).all();
+    const dateParam = req.query.date; // optional ?date=YYYY-MM-DD
+    let rows;
 
-    const result = municipalities.map(row => ({
+    if (dateParam) {
+      // Ensure date format is valid
+      const isoDate = new Date(dateParam).toISOString().split('T')[0]; // "YYYY-MM-DD"
+
+      rows = db.prepare(`
+        SELECT m.name AS municipality, m.lat, m.lon,
+               meas.time, meas.co, meas.no, meas.no2, meas.so2, meas.o3
+        FROM municipalities m
+        JOIN (
+          SELECT municipality_id, MAX(time) AS time
+          FROM measurements
+          WHERE DATE(time) = ?
+          GROUP BY municipality_id
+        ) latest ON latest.municipality_id = m.id
+        JOIN measurements meas
+          ON meas.municipality_id = latest.municipality_id
+         AND meas.time = latest.time
+        WHERE m.lat IS NOT NULL AND m.lon IS NOT NULL
+        ORDER BY m.name
+      `).all(isoDate);
+    } else {
+      // Default: latest available for each municipality
+      rows = db.prepare(`
+        SELECT m.name AS municipality, m.lat, m.lon,
+               meas.time, meas.co, meas.no, meas.no2, meas.so2, meas.o3
+        FROM municipalities m
+        JOIN (
+          SELECT municipality_id, MAX(time) AS max_time
+          FROM measurements
+          GROUP BY municipality_id
+        ) latest ON latest.municipality_id = m.id
+        JOIN measurements meas
+          ON meas.municipality_id = latest.municipality_id
+         AND meas.time = latest.max_time
+        WHERE m.lat IS NOT NULL AND m.lon IS NOT NULL
+        ORDER BY m.name
+      `).all();
+    }
+
+    const result = rows.map(row => ({
       municipality: row.municipality,
       lat: row.lat,
       lon: row.lon,
