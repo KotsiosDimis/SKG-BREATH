@@ -99,3 +99,17 @@ input:checked + .slider:before {
   padding: 0;
   z-index: 10;
 }
+
+.timestamp-widget {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  z-index: 1000;
+  color: #333;
+}
+

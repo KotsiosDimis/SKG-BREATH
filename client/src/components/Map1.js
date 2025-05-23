@@ -54,6 +54,8 @@ const Map1 = () => {
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
   });
 
+  const latestTimestamp = data.length > 0 ? data[0].time : null;
+
   return (
     <>
       <div className="overlay top-right">
@@ -80,7 +82,7 @@ const Map1 = () => {
       </div>
 
       {data.map((station, idx) => {
-        if (station.lat == null || station.lon == null) return null; // skip invalid
+        if (station.lat == null || station.lon == null) return null;
         return (
           <div key={idx}>
             {Object.keys(pollutantStyles).map((pollutant) => {
@@ -103,7 +105,15 @@ const Map1 = () => {
               position={[station.lat, station.lon]}
               icon={customIcon}
               eventHandlers={{
-                click: () => map.setView([station.lat, station.lon], 14, { animate: true }),
+                click: (e) => {
+                  map.flyTo([station.lat, station.lon], 14, {
+                    animate: true,
+                    duration: 1.5,
+                  });
+                  setTimeout(() => {
+                    e.target.openPopup();
+                  }, 700);
+                },
               }}
             >
               <Popup>
@@ -113,12 +123,18 @@ const Map1 = () => {
                 NO₂: {station.no2?.toFixed(2)} μg/m³<br />
                 SO₂: {station.so2?.toFixed(2)} μg/m³<br />
                 O₃: {station.o3?.toFixed(2)} μg/m³
-             </Popup>
-
+              </Popup>
             </Marker>
           </div>
         );
       })}
+
+      {latestTimestamp && (
+        <div className="timestamp-widget bottom-right">
+          <strong>Ημερομηνία Δεδομένων:</strong><br />
+          {new Date(latestTimestamp).toLocaleString('el-GR')}
+        </div>
+      )}
     </>
   );
 };

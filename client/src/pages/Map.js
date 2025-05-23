@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer} from 'react-leaflet';
 import Map1 from '../components/Map1.js';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
@@ -11,7 +11,13 @@ const MapPage = () => {
 
   return (
     <Layout>
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div
+        style={{
+          height: 'calc(100vh - 100px)', // adjust height based on your navbar+footer
+          width: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <MapContainer
           center={mapCenter}
           zoom={12}
@@ -21,8 +27,8 @@ const MapPage = () => {
           zoomControl={true}
           style={{ height: '100%', width: '100%' }}
           maxBounds={[
-            [40.48, 22.85],
-            [40.74, 23.1],
+            [40.40, 22.70],
+            [40.80, 23.20],
           ]}
           maxBoundsViscosity={1.0}
         >

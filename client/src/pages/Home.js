@@ -1,15 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import '../styles/theme.css';
 import { ReactComponent as WhiteTower } from '../assets/images/white-tower.svg';
 import designerImage from '../assets/images/designer.jpeg';
 
-
 const Home = () => {
   return (
     <Layout>
       <main>
-
         {/* Hero Section */}
         <section
           id="hero"
@@ -17,7 +16,6 @@ const Home = () => {
         >
           <div className="container">
             <div className="row align-items-center">
-
               {/* Left: Title & Subtitle */}
               <div className="col-md-6 text-start">
                 <h1 className="hero-title mb-3">SKG BREATH</h1>
@@ -25,9 +23,9 @@ const Home = () => {
                   Η εφαρμογή που σου δείχνει <br /> τι πραγματικά αναπνέεις στη Θεσσαλονίκη
                 </h2>
                 <div className="mt-4">
-                  <a href="#air-quality" className="btn btn-light btn-lg">
+                  <Link to="/data" className="btn btn-light btn-lg">
                     Δες τα Δεδομένα Τώρα
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -35,7 +33,6 @@ const Home = () => {
               <div className="col-md-6 text-center mt-4 mt-md-0">
                 <WhiteTower className="white-tower-icon" />
               </div>
-
             </div>
           </div>
         </section>
@@ -47,7 +44,6 @@ const Home = () => {
         >
           <div className="container">
             <div className="row align-items-center">
-              
               {/* Left: JPG Image */}
               <div className="col-md-6 text-center mb-4 mb-md-0">
                 <img src={designerImage} alt="IHU" className="img-fluid vh-75 rounded-4" />
@@ -76,9 +72,6 @@ const Home = () => {
           </div>
         </section>
 
-
-
-
         {/* Air Quality Section */}
         <section
           id="air-quality"
@@ -103,7 +96,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
       </main>
     </Layout>
   );
