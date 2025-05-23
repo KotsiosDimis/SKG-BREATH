@@ -6,10 +6,11 @@
   --color-secondary: #6c757d;
   --color-accent: #7dbbc3;
 
+  --color-background: #98d8e0;
+  --color-surface: #613f3f;
+
   --color-light: #f8f9fa;
   --color-dark: #1c1f23;
-  --color-background: #e5e7eb;
-  --color-surface: #ffffff;
 
   --text-main: #111111;
   --text-soft: #111111;
@@ -24,11 +25,12 @@
    DARK THEME OVERRIDES
 ================================================== */
 .theme-dark {
-  --color-background: #0d0d0d;
-  --color-surface: #1a1a1a;
   --color-primary: #1e90ff;
   --color-secondary: #2c2c2c;
   --color-accent: #3b82f6;
+
+  --color-background: #0d0d0d;
+  --color-surface: #1a1a1a;
 
   --text-main: #ffffff;
   --text-soft: #b3b3b3;
@@ -117,6 +119,19 @@ p {
   padding: 2rem;
   border-radius: 12px;
 }
+
+/* Custom airy translucent section */
+.section-glass {
+  background: rgba(44, 62, 80, 0.2); /* Semi-transparent version of --color-primary */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-main);
+  border-radius: 16px;
+  padding: 6rem 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
 
 /* ==================================================
    HERO SECTION
@@ -353,4 +368,5 @@ p {
 .theme-dark .white-tower-icon {
   color: #e5e7eb;
 }
+
 
