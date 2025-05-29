@@ -13,13 +13,13 @@
   "description": "",
   "dependencies": {
     "@dsnp/parquetjs": "^1.8.6",
-    "axios": "^1.8.4",
+    "axios": "^1.9.0",
     "better-sqlite3": "^11.10.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "node-fetch": "^3.3.2",
+    "node-fetch": "^2.7.0",
     "parquetjs-lite": "^0.8.7"
   },
   "devDependencies": {
