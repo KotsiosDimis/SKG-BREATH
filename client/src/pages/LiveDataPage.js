@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Layout from "../components/Layout";
 
 const LiveDataPage = () => {
   const [data, setData] = useState(null);
@@ -23,28 +24,30 @@ const LiveDataPage = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Ζωντανά Δεδομένα Ρύπανσης - Θεσσαλονίκη</h1>
-      {data ? (
-        data.results.map((station) => (
-          <div key={station.location} className="mb-4 border-b pb-2">
-            <h2 className="font-semibold">{station.location}</h2>
-            <ul>
-              {station.measurements.map((m) => (
-                <li key={m.parameter}>
-                  {m.parameter.toUpperCase()}: {m.value} {m.unit}{" "}
-                  <span className="text-sm text-gray-500">
-                    (τελ. ενημέρωση: {formatDateTime(m.lastUpdated)})
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      ) : (
-        <p>Φόρτωση δεδομένων...</p>
-      )}
-    </div>
+    <Layout>
+      <div className="p-4">
+        <h1 className="text-xl font-semibold mb-4">Ζωντανά Δεδομένα Ρύπανσης - Θεσσαλονίκη</h1>
+        {data ? (
+          data.results.map((station) => (
+            <div key={station.location} className="mb-4 border-b pb-2">
+              <h2 className="font-semibold">{station.location}</h2>
+              <ul>
+                {station.measurements.map((m) => (
+                  <li key={m.parameter}>
+                    {m.parameter.toUpperCase()}: {m.value} {m.unit}{" "}
+                    <span className="text-sm text-gray-500">
+                      (τελ. ενημέρωση: {formatDateTime(m.lastUpdated)})
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <p>Φόρτωση δεδομένων...</p>
+        )}
+      </div>
+    </Layout>
   );
 };
 
