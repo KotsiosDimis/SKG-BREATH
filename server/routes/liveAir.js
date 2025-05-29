@@ -1,23 +1,20 @@
 const express = require("express");
 const fetch = require("node-fetch");
-require("dotenv").config();
-
 const router = express.Router();
+
+const API_KEY = process.env.OPENAQ_API_KEY;
+const SENSOR_ID = "7773691"; // AGIA SOFIA PM2.5
 
 router.get("/", async (req, res) => {
   try {
-    const apiKey = process.env.OPENAQ_API_KEY;
-    const sensorId = "7773691"; // AGIA SOFIA – PM2.5
+    const url = `https://api.openaq.org/v3/sensors/${SENSOR_ID}/measurements?limit=1`;
 
-    const response = await fetch(`https://api.openaq.org/v3/sensors/${sensorId}/measurements?limit=1`, {
-      headers: {
-        "X-API-Key": apiKey,
-      },
+    const response = await fetch(url, {
+      headers: { "X-API-Key": API_KEY },
     });
 
     const status = response.status;
     const body = await response.text();
-
     console.log("OpenAQ Response Status:", status);
     console.log("OpenAQ Response Body:", body);
 
@@ -26,17 +23,21 @@ router.get("/", async (req, res) => {
     }
 
     const data = JSON.parse(body);
-    res.json({
+    const result = data.results[0];
+
+    const output = {
       station: "AGIA SOFIA",
-      parameter: "PM2.5",
-      value: data.results[0].value,
-      unit: data.results[0].parameter.units,
-      from: data.results[0].period.datetimeFrom.local,
-      to: data.results[0].period.datetimeTo.local,
-    });
+      parameter: result.parameter.name.toUpperCase(),
+      value: result.value,
+      unit: result.parameter.units,
+      from: result.period.datetimeFrom.local,
+      to: result.period.datetimeTo.local,
+    };
+
+    res.json(output);
   } catch (error) {
-    console.error("Σφάλμα κατά την ανάκτηση ζωντανών δεδομένων:", error);
-    res.status(500).json({ error: "Σφάλμα διακομιστή" });
+    console.error("Σφάλμα κατά την ανάκτηση δεδομένων:", error);
+    res.status(500).json({ error: "Σφάλμα backend" });
   }
 });
 
