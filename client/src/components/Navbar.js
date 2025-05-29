@@ -17,27 +17,27 @@ const AppNavbar = () => {
   return (
     <Navbar expand="lg" className="navbar-custom" variant="dark">
       <Container fluid>
-
-        {/* ✅ Brand */}
+        {/*  Brand */}
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <span className="navbar-logo-text fw-bold text-light">SKG</span>
           <span className="ms-2 fw-bold text-light">Breath</span>
         </Navbar.Brand>
 
-        {/* ✅ Toggle button for mobile */}
+        {/* Toggle button for mobile */}
         <Navbar.Toggle aria-controls="main-navbar-nav" />
 
-        {/* ✅ Collapsible content */}
+        {/* Collapsible content */}
         <Navbar.Collapse id="main-navbar-nav">
-          {/* ✅ Nav links */}
+          {/*  Nav links */}
           <Nav className="mx-auto text-center">
             <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
             <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
-            <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
+            <Nav.Link as={Link} to="/live" active={location.pathname === '/live'}>Live Data</Nav.Link> {/* ✅ Νέα γραμμή */}
             <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
+            <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
           </Nav>
 
-          {/* ✅ Dark mode toggle */}
+          {/* Dark mode toggle */}
           <Form className="d-flex justify-content-end mt-3 mt-lg-0">
             <Form.Switch
               id="darkModeSwitch"

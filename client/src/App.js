@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Data from './pages/HistoricalData';
 import About from './pages/About';
 import Map from './pages/Map';
+import LiveDataPage from './pages/LiveDataPage'; 
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/data" element={<Data />} />
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/live" element={<LiveDataPage />} /> 
       </Routes>
     </Router>
   );
