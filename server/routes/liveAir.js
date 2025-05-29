@@ -1,43 +1,34 @@
-const express = require("express");
-const fetch = require("node-fetch");
+const express = require('express');
 const router = express.Router();
+const fetch = require('node-fetch');
 
 const API_KEY = process.env.OPENAQ_API_KEY;
-const SENSOR_ID = "7773691"; // AGIA SOFIA PM2.5
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const url = `https://api.openaq.org/v3/sensors/${SENSOR_ID}/measurements?limit=1`;
-
-    const response = await fetch(url, {
-      headers: { "X-API-Key": API_KEY },
+    const sensorId = '7773691'; // example for PM2.5 at Agia Sofia
+    const response = await fetch(`https://api.openaq.org/v3/sensors/${sensorId}/measurements?limit=1`, {
+      headers: { 'X-API-Key': API_KEY },
     });
 
-    const status = response.status;
-    const body = await response.text();
-    console.log("OpenAQ Response Status:", status);
-    console.log("OpenAQ Response Body:", body);
+    const data = await response.json();
 
     if (!response.ok) {
-      return res.status(status).json({ error: "OpenAQ API Error", details: body });
+      return res.status(response.status).json({ error: 'OpenAQ API Error', details: data });
     }
 
-    const data = JSON.parse(body);
-    const result = data.results[0];
-
-    const output = {
-      station: "AGIA SOFIA",
-      parameter: result.parameter.name.toUpperCase(),
-      value: result.value,
-      unit: result.parameter.units,
-      from: result.period.datetimeFrom.local,
-      to: result.period.datetimeTo.local,
-    };
-
-    res.json(output);
-  } catch (error) {
-    console.error("Σφάλμα κατά την ανάκτηση δεδομένων:", error);
-    res.status(500).json({ error: "Σφάλμα backend" });
+    const latest = data.results[0];
+    res.json({
+      station: 'AGIA SOFIA',
+      parameter: 'PM2.5',
+      value: latest.value,
+      unit: latest.parameter.units,
+      from: latest.period.datetimeFrom.local,
+      to: latest.period.datetimeTo.local,
+    });
+  } catch (err) {
+    console.error('Live fetch error:', err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
