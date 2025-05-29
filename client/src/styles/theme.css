@@ -369,4 +369,38 @@ p {
   color: #e5e7eb;
 }
 
+@media (max-width: 768px) {
+  #about .row {
+    flex-direction: column-reverse;
+  }
+
+  #about img {
+    max-height: 250px !important;
+  }
+
+  #hero h1.hero-title {
+    font-size: 2.2rem;
+  }
+
+  #hero h2.lead {
+    font-size: 1.2rem;
+  }
+}
+
+/* Prevent horizontal overflow on all pages */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all sections stay within screen bounds */
+.fullscreen-section,
+.section-glass,
+.section-surface {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
 

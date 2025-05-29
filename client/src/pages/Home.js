@@ -43,10 +43,15 @@ const Home = () => {
           className="fullscreen-section section-glass d-flex align-items-center"
         >
           <div className="container">
-            <div className="row align-items-center">
+            <div className="row align-items-center flex-column-reverse flex-md-row">
               {/* Left: JPG Image */}
               <div className="col-md-6 text-center mb-4 mb-md-0">
-                <img src={designerImage} alt="IHU" className="img-fluid vh-75 rounded-4" />
+                <img
+                  src={designerImage}
+                  alt="IHU"
+                  className="img-fluid w-100 rounded-4"
+                  style={{ maxHeight: '400px', objectFit: 'cover' }}
+                />
               </div>
 
               {/* Right: Text */}

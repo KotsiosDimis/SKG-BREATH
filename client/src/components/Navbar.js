@@ -15,34 +15,39 @@ const AppNavbar = () => {
   }, [darkMode]);
 
   return (
-    <Navbar expand="lg" className="navbar-custom">
-      <Container fluid className="d-flex justify-content-between align-items-center">
+    <Navbar expand="lg" className="navbar-custom" variant="dark">
+      <Container fluid>
 
-        {/* ✅ Left: Branding */}
-        <div className="d-flex align-items-center ps-3">
+        {/* ✅ Brand */}
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <span className="navbar-logo-text fw-bold text-light">SKG</span>
           <span className="ms-2 fw-bold text-light">Breath</span>
-        </div>
+        </Navbar.Brand>
 
-        {/* ✅ Center: Nav links */}
-        <Nav className="mx-auto text-center">
-          <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
-          <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
-          <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
-          <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
-        </Nav>
+        {/* ✅ Toggle button for mobile */}
+        <Navbar.Toggle aria-controls="main-navbar-nav" />
 
-        {/* ✅ Right: Dark mode toggle */}
-        <div className="d-flex align-items-center pe-3">
-          <Form.Switch
-            id="darkModeSwitch"
-            label="Dark Mode"
-            checked={darkMode}
-            onChange={() => setDarkMode(!darkMode)}
-            className="text-light"
-          />
-        </div>
+        {/* ✅ Collapsible content */}
+        <Navbar.Collapse id="main-navbar-nav">
+          {/* ✅ Nav links */}
+          <Nav className="mx-auto text-center">
+            <Nav.Link as={Link} to="/" active={location.pathname === '/'}>Home</Nav.Link>
+            <Nav.Link as={Link} to="/data" active={location.pathname === '/data'}>Historical Data</Nav.Link>
+            <Nav.Link as={Link} to="/about" active={location.pathname === '/about'}>About</Nav.Link>
+            <Nav.Link as={Link} to="/map" active={location.pathname === '/map'}>Map</Nav.Link>
+          </Nav>
 
+          {/* ✅ Dark mode toggle */}
+          <Form className="d-flex justify-content-end mt-3 mt-lg-0">
+            <Form.Switch
+              id="darkModeSwitch"
+              label="Dark Mode"
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              className="text-light"
+            />
+          </Form>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
