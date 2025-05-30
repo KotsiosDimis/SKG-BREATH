@@ -22,56 +22,67 @@ const LiveGauge = ({ value }) => {
   const quality = getQualityText(value);
 
   return (
-    <div className="flex items-center justify-center h-[66vh]">
-      <div className="relative w-[280px] h-[280px]">
-        {/* SVG */}
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 180 180"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="90"
-            cy="90"
-            r="70"
-            stroke="#e5e7eb"
-            strokeWidth="15"
-            fill="none"
-          />
-          <circle
-            cx="90"
-            cy="90"
-            r="70"
-            stroke={color}
-            strokeWidth="15"
-            fill="none"
-            strokeDasharray={strokeDasharray}
-            strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
-            transform="rotate(-90 90 90)"
-          />
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dominantBaseline="central"
-            className="fill-gray-800 text-xl font-bold"
-          >
-            {value} μg/m³
-          </text>
-          <text
-            x="50%"
-            y="60%"
-            textAnchor="middle"
-            dominantBaseline="central"
-            className="text-sm"
-            fill={color}
-          >
-            {quality}
-          </text>
-        </svg>
-      </div>
-    </div>
+    <div className="flex items-center justify-center h-[50vh]">
+    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
+  <div
+    className="position-relative"
+    style={{
+      width: 'min(80vw, 300px)',
+      height: 'min(80vw, 300px)',
+    }}
+  >
+    <svg
+      className="w-100 h-100"
+      viewBox="0 0 180 180"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="90"
+        cy="90"
+        r="70"
+        stroke="#e5e7eb"
+        strokeWidth="15"
+        fill="none"
+      />
+      <circle
+        cx="90"
+        cy="90"
+        r="70"
+        stroke={color}
+        strokeWidth="15"
+        fill="none"
+        strokeDasharray={strokeDasharray}
+        strokeDashoffset={strokeDashoffset}
+        strokeLinecap="round"
+        transform="rotate(-90 90 90)"
+      />
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill="#1f2937"
+        fontSize="14"
+        fontWeight="bold"
+      >
+        {value} μg/m³
+      </text>
+      <text
+        x="50%"
+        y="60%"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill={color}
+        fontSize="12"
+      >
+        {quality}
+      </text>
+    </svg>
+  </div>
+</div>
+
+  </div>
+
   );
 };
 
