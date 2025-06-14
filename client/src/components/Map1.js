@@ -37,9 +37,10 @@ const Map1 = () => {
   const [visiblePollutants, setVisiblePollutants] = useState({ co: true, no: true, no2: true, so2: true, o3: true });
   const [collapsed, setCollapsed] = useState(false);
   const [selectedDate, setSelectedDate] = useState('2024-12-31');
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch(`https://skg-breath.onrender.com/api/map?date=${selectedDate}`)
+    fetch(`${apiUrl}/map?date=${selectedDate}`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error('Failed to fetch /api/map', err));

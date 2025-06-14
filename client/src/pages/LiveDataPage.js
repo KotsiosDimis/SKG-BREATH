@@ -4,9 +4,10 @@ import LiveGauge from "../components/LiveGauge";
 
 const LiveDataPage = () => {
   const [data, setData] = useState(null);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch("https://skg-breath.onrender.com/api/live-air")
+    fetch(`${apiUrl}/live-air`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) =>
