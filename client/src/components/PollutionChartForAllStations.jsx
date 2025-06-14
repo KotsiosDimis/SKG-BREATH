@@ -16,10 +16,11 @@ const PollutionChartsSingleStation = () => {
   });
   const [groupBy, setGroupBy] = useState('hourly'); // 'hourly' or 'monthly'
   const [data, setData] = useState([]);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Fetch station list
   useEffect(() => {
-    fetch('https://skg-breath.onrender.com/api/okgAir/municipalities')
+    fetch(`${apiUrl}/okgAir/municipalities`)
       .then(res => res.json())
       .then(stations => {
         setStations(stations);
@@ -34,14 +35,14 @@ const PollutionChartsSingleStation = () => {
 
     const fetchData = async () => {
       if (groupBy === 'hourly') {
-        const res = await fetch(`https://skg-breath.onrender.com/api/okgAir/${selectedStation}`);
+        const res = await fetch(`${apiUrl}/okgAir/${selectedStation}`);
         const json = await res.json();
         setData(json.sort((a, b) => new Date(a.time) - new Date(b.time)));
       } else {
         const keys = Object.keys(pollutants);
         const all = await Promise.all(
           keys.map(p =>
-            fetch(`https://skg-breath.onrender.com/api/okgAir/average?municipality=${selectedStation}&by=month&pollutant=${p}`)
+            fetch(`${apiUrl}/okgAir/average?municipality=${selectedStation}&by=month&pollutant=${p}`)
               .then(res => res.json())
               .then(values => values.map(d => ({ group: d.grouping, [p]: d.avg })))
           )
